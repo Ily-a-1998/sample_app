@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+    
 	def show
 		@user = User.find(params[:id])
 	end
@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   	def create
   		@user = User.new(user_params) # Не окончательная реализация!
   		if @user.save
+        log_in @user
   			flash[:success] = "Welcome to the Sample App!" # временное сообщение
   			redirect_to @user # перенаправление на /user
   		else
